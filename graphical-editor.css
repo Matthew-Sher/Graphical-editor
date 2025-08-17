@@ -1,0 +1,56 @@
+body {
+    background-color: #e0e0e0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+svg, .tool-bar {
+    width: 80vw;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+}
+
+.tool-bar {
+    height: 15vh;
+    margin-bottom: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shape, .color {
+    width: 25px;
+    height: 25px;
+    margin: 1vh;
+    padding: 0;
+}
+
+.shape {
+    border: none;
+}
+
+.selected {
+    border: 2px solid #ff0000;
+}
+
+#tool-line, #tool-circle, #tool-rectangle {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#tool-line {
+    background-image: url(tools/Line.png);
+}
+
+#tool-circle {
+    background-image: url(tools/Ellipse.png);
+}
+
+#tool-rectangle {
+    background-image: url(tools/Rectangle.png);
+}

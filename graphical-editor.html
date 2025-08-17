@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <haed>
+        <meta charset="utf-8">
+        <title>
+            Graphical editor
+        </title>
+        <link rel="styleSheet" href="graphical-editor.css">
+    </haed>
+    <body>
+        <div class="container">
+            <div class="tool-bar">
+                <div id="tool-piсker">
+                    <button id="tool-line" class="shape selected"></button>
+                    <button id="tool-circle" class="shape"></button>
+                    <button id="tool-rectangle" class="shape"></button>
+                </div>
+                <div id="color-picker">
+                    <button class="color selected" data-color="#000000"></button>
+                    <button class="color" data-color="#ff0000"></button>
+                    <button class="color" data-color="#00ff00"></button>
+                    <button class="color" data-color="#0000ff"></button>
+                    <button class="color" data-color="#ff00ff"></button>
+                    <button class="color" data-color="#00ffff"></button>
+                    <button class="color" data-color="#ffff00"></button>
+                </div>
+            </div>
+            <div class="main-field">
+                <svg id="canvas" width="80vw" height="75vh" viewBox="0 0 1536 810"></svg>
+            </div>
+        </div>
+
+        <script src="graphical-editor.js"></script>
+    </body>
+</html>
