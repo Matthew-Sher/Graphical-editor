@@ -20,7 +20,6 @@ svg, .tool-bar {
     width: 25px;
     height: 25px;
     margin: 8px;
-    padding: 0;
 }
 
 .shape {
@@ -28,7 +27,7 @@ svg, .tool-bar {
 }
 
 .selected {
-    border: 2px solid #ff0000;
+    outline: 2px solid #ff0000;
     outline-offset: 3px;
 }
 
