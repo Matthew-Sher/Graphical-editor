@@ -15,7 +15,21 @@ colorPicker.addEventListener('click', function (event) {
         btn.classList.add('selected');
         color = btn.dataset.color;
     };
-})
+});
+
+let shape = 'line';
+let shapePicker = document.getElementById('tool-piсker');
+shapePicker.addEventListener('click', function (event) {
+    let target = event.target;
+    let btn = target.closest('button.shape');
+    if (btn) {
+        for (button of event.currentTarget.getElementsByTagName('button')) {
+            button.classList.remove('selected');
+        };
+        btn.classList.add('selected');
+        shape = btn.dataset.shape;
+    };
+});
 
 let canvas = document.getElementById('canvas');
 let startCoord = {};
@@ -23,7 +37,6 @@ let startCoord = {};
 canvas.addEventListener('mousedown', function (event) {
     startCoord.x = event.pageX;
     startCoord.y = event.pageY;
-    console.log(event);
 });
 
 let currentShape;
@@ -38,7 +51,7 @@ canvas.addEventListener('mousemove', function (event) {
         if (currentShape !== null && currentShape !== undefined) {
             canvas.removeChild(currentShape);
         };
-        currentShape = drawLine(startCoord, endCoord);
+        currentShape = drawShape(shape, startCoord, endCoord);
     };
 })
 
@@ -47,8 +60,21 @@ canvas.addEventListener('mouseup', function (event) {
         x: event.pageX,
         y: event.pageY,
     };
-    drawLine(startCoord, endCoord);
+    drawShape(shape, startCoord, endCoord);
 });
+
+let drawShape = function (shape, startCoord, endCoord) {
+    if (shape == 'line') {
+        return drawLine(startCoord, endCoord)
+    } else if (shape == 'circle') {
+        return drawCircle(startCoord, endCoord);
+    } else if (shape == 'rectangle') {
+        return drawRectangle(startCoord, endCoord);
+    } else {
+        console.log('Error')
+        return undefined;
+    };
+};
 
 let drawLine = function (startCoords, endCoords) {
     let line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -59,4 +85,34 @@ let drawLine = function (startCoords, endCoords) {
     line.setAttribute('stroke', color);
     canvas.appendChild(line);
     return line;
+};
+
+let calcRadius = function (startCoords, endCoords) {
+    let a = Math.abs(startCoord.x - endCoords.x);
+    let b = Math.abs(startCoord.y - endCoords.y);
+    let r = Math.sqrt(a ** 2 + b ** 2);
+    return r;
+};
+
+let drawCircle = function (startCoords, endCoords) {
+    let Circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    Circle.setAttribute('cx', startCoords.x);
+    Circle.setAttribute('cy', startCoords.y);
+    Circle.setAttribute('r', calcRadius(startCoords, endCoords));
+    Circle.setAttribute('stroke', color);
+    Circle.setAttribute('fill', 'none');
+    canvas.appendChild(Circle);
+    return Circle;
+};
+
+let drawRectangle = function (startCoords, endCoords) {
+    let Rectangle = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    Rectangle.setAttribute('x', Math.min(startCoords.x, endCoords.x));
+    Rectangle.setAttribute('y', Math.min(startCoords.y, endCoords.y));
+    Rectangle.setAttribute('width', Math.abs(endCoords.x - startCoords.x));
+    Rectangle.setAttribute('height', Math.abs(endCoords.y - startCoord.y));
+    Rectangle.setAttribute('stroke', color);
+    Rectangle.setAttribute('fill', 'none');
+    canvas.appendChild(Rectangle);
+    return Rectangle;
 };
