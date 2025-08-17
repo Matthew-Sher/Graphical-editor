@@ -11,8 +11,23 @@ canvas.addEventListener('mousedown', function (event) {
     startCoord.x = event.pageX;
     startCoord.y = event.pageY;
     console.log(event);
-    console.log(`(${event.pageX}; ${event.pageY})`);
 });
+
+let currentShape;
+canvas.addEventListener('mousemove', function (event) {
+    let endCoord = {
+        x: event.pageX,
+        y: event.pageY,
+    };
+
+    if (event.button == 0 && event.buttons == 1) {
+        if (currentShape !== null && currentShape !== undefined) {
+            canvas.removeChild(currentShape);
+        }
+
+        currentShape = drawLine(startCoord, endCoord);
+    };
+})
 
 canvas.addEventListener('mouseup', function (event) {
     let endCoord = {
@@ -30,4 +45,5 @@ let drawLine = function (startCoords, endCoords) {
     line.setAttribute('y2', endCoords.y);
     line.setAttribute('stroke', '#000000')
     canvas.appendChild(line);
+    return line;
 };

@@ -9,8 +9,8 @@ svg, .tool-bar {
 
 .tool-bar {
     width: fit-content;
-    height: 15vh;
-    margin-bottom: 3vh;
+    height: 110px;
+    margin-bottom: 23px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@ svg, .tool-bar {
 .shape, .color {
     width: 25px;
     height: 25px;
-    margin: 1vh;
+    margin: 8px;
     padding: 0;
 }
 
@@ -29,6 +29,7 @@ svg, .tool-bar {
 
 .selected {
     border: 2px solid #ff0000;
+    outline-offset: 3px;
 }
 
 #tool-line, #tool-circle, #tool-rectangle {
