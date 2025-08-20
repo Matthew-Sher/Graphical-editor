@@ -48,7 +48,7 @@ canvas.addEventListener('mousemove', function (event) {
         if (event.shiftKey) {
             equal = true;
         };
-        if (currentShape !== null && currentShape !== undefined) {
+        if (currentShape !== null && currentShape !== undefined && shape !== 'pencil') {
             canvas.removeChild(currentShape);
         };
 
@@ -72,15 +72,28 @@ canvas.addEventListener('mouseup', function (event) {
 
 let drawShape = function (shape, startCoord, endCoord, equal) {
     if (shape == 'line') {
-        return drawLine(startCoord, endCoord);
+        return drawLine(startCoord, endCoord, equal);
     } else if (shape == 'circle') {
         return drawCircle(startCoord, endCoord);
     } else if (shape == 'rectangle') {
         return drawRectangle(startCoord, endCoord, equal);
+    } else if (shape == 'pencil') {
+        return drawPencil(endCoord);
     } else {
         console.log('Error')
         return undefined;
     };
+};
+
+let drawPencil = function (coordinates) {
+    let Circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    Circle.setAttribute('cx', coordinates.x);
+    Circle.setAttribute('cy', coordinates.y);
+    Circle.setAttribute('r', 0.5);
+    Circle.setAttribute('stroke', color);
+    Circle.setAttribute('fill', color);
+    canvas.appendChild(Circle);
+    return Circle;
 };
 
 let drawLine = function (startCoords, endCoords) {
