@@ -31,7 +31,7 @@ svg, .tool-bar {
     outline-offset: 3px;
 }
 
-#tool-line, #tool-circle, #tool-rectangle, #tool-pencil {
+#tool-line, #tool-circle, #tool-rectangle, #tool-pencil, #tool-rubber{
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -51,4 +51,8 @@ svg, .tool-bar {
 
 #tool-pencil {
     background-image: url(tools/Pencil.png);
+}
+
+#tool-rubber {
+    background-image: url(tools/Rubber.png);
 }
